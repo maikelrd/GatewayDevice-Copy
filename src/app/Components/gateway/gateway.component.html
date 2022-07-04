@@ -1,0 +1,65 @@
+<div class="container mt-5">
+    <div class="col-lg-8 offset-lg-2">
+        <div class="card">
+            <div class="card-body ">
+                <h3 class="titulo">Gateways</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-body">
+               <h5 class="titulo">{{accion|uppercase}} Gateways</h5> 
+
+               <form [formGroup]="form" (ngSubmit)="saveGateway()">
+                <div class="input-group input-group-lg mb-3">                   
+                    <input  formControlName="name" type="text" class="form-control" placeholder="name" >
+                  </div>
+                  <div class="input-group input-group-lg mb-3">                   
+                    <input formControlName="ipV4"  type="text" class="form-control" placeholder="ipV4" >
+                  </div>
+                 
+                  <div class="d-grid gap-2">
+                     <button [disabled]="this.form.invalid" type="submit" class="btn btn-success btn-lg">
+                        <i class="fa-solid fa-database"></i>&nbsp;Aceptar</button>
+                  </div>                
+               </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-body">
+               <h5 class="titulo">List of Gateways</h5> 
+               <table class="table"> 
+                <thead>
+                    <tr>
+                      <th scope="col">Name</th>
+                      <th scope="col">IPV4</th>
+                   
+                    </tr>
+                  </thead>
+                
+                   <tbody>
+                       <tr *ngFor="let gateway of listGateway">
+                           <td>{{gateway.name}} </td>
+                           <td>{{gateway.ipV4}}</td>
+                  
+                           <td>
+                               <button class="btn btn-primary" (click)="editGateway(gateway)">edit</button>                               
+                           </td>
+                           <td>
+                           <button class="btn btn-danger" (click)="deleteGateway(gateway.serialNumber)">delete</button>
+                           </td>
+                       </tr>
+                       
+                   </tbody>
+               </table>
+            </div>
+        </div>
+
+    </div>
+</div>
